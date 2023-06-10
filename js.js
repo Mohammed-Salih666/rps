@@ -57,10 +57,56 @@ function getComputerChoice() {
     return choice === 1 ? "rock" : choice === 2 ? "paper" : "scissors"; 
 }
 
-let rock = document.getElementById("rock"); 
-let paper = document.getElementById("paper"); 
-let scissors = document.getElementById("scissors");
 
-rock.addEventListener("click", () => playRound("rock", getComputerChoice()));
-paper.addEventListener("click", () => playRound("paper", getComputerChoice()));
-scissors.addEventListener("click", () => playRound("scissors", getComputerChoice()));
+let result = document.getElementById("result");
+let countResult = document.getElementById("count");
+
+let btns = document.querySelectorAll('button');
+let clicks = 0;
+let count = 0; 
+
+btns.forEach((button) => {
+
+    button.addEventListener("click", () => {
+        if(clicks < 5) {
+
+            result.textContent = playRound(button.textContent, getComputerChoice());
+            clicks++
+
+            if(result.textContent.includes("Win")){
+                count++;
+            }
+            countResult.textContent = "Wins:  " + count;
+
+            if(clicks === 5) {
+                check(count); 
+            }
+            console.log("count: " + count);
+            console.log(clicks);
+        }
+    });
+});
+
+function check(wins) {
+    if(wins >= 3) {
+        result.innerHTML = "YOU WON!";
+    }
+    else {
+        result.innerHTML = "YOU LOST!";
+    }
+
+    if(document.getElementById('again') === null) {
+        let again = document.createElement("button");
+        again.setAttribute('id', 'again');
+        again.innerText = "Play Again?";
+        document.body.appendChild(again);
+        
+        again.addEventListener("click", () => {
+            clicks = 0;
+            count = 0; 
+            countResult.textContent = "Wins:  ";
+            document.body.removeChild(again);
+        });
+    }
+    }
+    
