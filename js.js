@@ -1,6 +1,6 @@
 console.log("hello motherfuckers   ");
 
-game();
+// game();
 
 // -1: lose 0: tie 1: win
 function playRound(playerSelection, computerSelection) {
@@ -57,3 +57,10 @@ function getComputerChoice() {
     return choice === 1 ? "rock" : choice === 2 ? "paper" : "scissors"; 
 }
 
+let rock = document.getElementById("rock"); 
+let paper = document.getElementById("paper"); 
+let scissors = document.getElementById("scissors");
+
+rock.addEventListener("click", () => playRound("rock", getComputerChoice()));
+paper.addEventListener("click", () => playRound("paper", getComputerChoice()));
+scissors.addEventListener("click", () => playRound("scissors", getComputerChoice()));
