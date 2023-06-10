@@ -87,25 +87,28 @@ btns.forEach((button) => {
     });
 });
 
+let container = document.getElementById('container');
+
 function check(wins) {
     if(wins >= 3) {
-        result.innerHTML = "YOU WON!";
+        result.textContent = "YOU WON!";
     }
     else {
-        result.innerHTML = "YOU LOST!";
+        result.textContent = "YOU LOST!";
     }
 
     if(document.getElementById('again') === null) {
         let again = document.createElement("button");
         again.setAttribute('id', 'again');
         again.innerText = "Play Again?";
-        document.body.appendChild(again);
+        container.appendChild(again);
         
         again.addEventListener("click", () => {
             clicks = 0;
             count = 0; 
             countResult.textContent = "Wins:  ";
-            document.body.removeChild(again);
+            result.textContent = " ";
+            container.removeChild(again);
         });
     }
     }
